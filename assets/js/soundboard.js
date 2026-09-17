@@ -10,12 +10,18 @@
         const micSoundB = new Audio('./assets/sounds/ReelAudio-39914.mp3');
         let micSoundIndex = 0;
 
+        function isPlaying(audioEl) {
+            return !audioEl.paused && !audioEl.ended && audioEl.currentTime > 0;
+        }
+
         document.getElementById('cheer-btn').addEventListener('click', function() {
+            if (isPlaying(cheerAudio)) return;
             cheerAudio.currentTime = 0;
             cheerAudio.play().catch(e => console.log("Cheer audio error", e));
         });
 
         document.getElementById('clap-btn').addEventListener('click', function() {
+            if (isPlaying(clapAudio)) return;
             clapAudio.currentTime = 0;
             clapAudio.play().catch(e => console.log("Clap audio error", e));
         });
@@ -27,6 +33,8 @@
             dialogueBtn.style.opacity = '1';
             dialogueBtn.style.cursor = 'pointer';
             dialogueBtn.addEventListener('click', function() {
+                if (isPlaying(micSoundA) || isPlaying(micSoundB)) return;
+
                 if (micSoundIndex === 0) {
                     micSoundA.currentTime = 0;
                     micSoundA.play().catch(e => console.log("Mic A error", e));
