@@ -2,14 +2,13 @@
 
 (function() {
     function initSoundboard() {
-        // Sound assets (currently placeholders)
-        const cheerAudio = new Audio('https://actions.google.com/sounds/v1/crowds/battle_crowd_cheer_and_applause.ogg'); 
-        const clapAudio = new Audio('https://actions.google.com/sounds/v1/crowds/small_crowd_applause.ogg');
+        const cheerAudio = new Audio('./assets/sounds/cheering.mp3'); 
+        const clapAudio = new Audio('./assets/sounds/clapping.mp3');
         
-        // Disable dialogue for now since it's pending
-        // const dialogues = [...];
-        // const dialogueAudio = new Audio();
-        // let currentDialogueIndex = 0;
+        // Microphone sounds
+        const micSoundA = new Audio('./assets/sounds/ReelAudio-24134.mp3');
+        const micSoundB = new Audio('./assets/sounds/ReelAudio-39914.mp3');
+        let micSoundIndex = 0;
 
         document.getElementById('cheer-btn').addEventListener('click', function() {
             cheerAudio.currentTime = 0;
@@ -21,10 +20,32 @@
             clapAudio.play().catch(e => console.log("Clap audio error", e));
         });
 
-        // Dialogue button is disabled via HTML, but we keep a stub here
-        document.getElementById('dialogue-btn').addEventListener('click', function() {
-            console.log("Dialogue feature is currently pending/coming soon.");
-        });
+        // Dialogue button
+        const dialogueBtn = document.getElementById('dialogue-btn');
+        if(dialogueBtn) {
+            dialogueBtn.removeAttribute('disabled');
+            dialogueBtn.style.opacity = '1';
+            dialogueBtn.style.cursor = 'pointer';
+            dialogueBtn.addEventListener('click', function() {
+                if (micSoundIndex === 0) {
+                    micSoundA.currentTime = 0;
+                    micSoundA.play().catch(e => console.log("Mic A error", e));
+                    micSoundIndex = 1;
+                } else {
+                    micSoundB.currentTime = 0;
+                    micSoundB.play().catch(e => console.log("Mic B error", e));
+                    micSoundIndex = 0;
+                }
+                
+                // Visual bounce
+                this.style.transform = 'scale(1.2)';
+                this.style.boxShadow = '0 0 20px #00d2d3';
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                }, 200);
+            });
+        }
 
         document.getElementById('popper-btn').addEventListener('click', function() {
             const duration = 3 * 1000;
@@ -53,6 +74,10 @@
         const shareBtn = document.getElementById('share-btn');
         if (shareBtn) {
             shareBtn.addEventListener('click', function() {
+                // Play share sound
+                cheerAudio.currentTime = 0;
+                cheerAudio.play().catch(e => console.log("Share audio error", e));
+
                 const url = window.location.href;
                 if (navigator.share) {
                     navigator.share({

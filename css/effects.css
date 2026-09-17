@@ -36,22 +36,25 @@ body.lighter-mode #lighters-container { opacity: 1; }
 body.encore-active #blackout-screen { opacity: 1; pointer-events: all; }
 
 /* Guitar Amp Overdrive */
-body.overdrive-active {
-  animation: fullPageBeat 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate;
+:root {
+  --overdrive-scale: 1;
+  --overdrive-screen-scale: 1;
+  --overdrive-y: 0px;
 }
+
+body.overdrive-active {
+  transform: scale(var(--overdrive-screen-scale));
+  transform-origin: center center;
+}
+
 body.overdrive-active .player-wrap {
-  animation: heavyBass 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate; 
+  /* Safely preserve the base translateX(-50%) while adding the audio-reactive scale/bounce */
+  transform: translateX(-50%) translate3d(0, var(--overdrive-y), 0) scale(var(--overdrive-scale));
   filter: contrast(1.5) saturate(1.5);
 }
-body.overdrive-active .concert-lights { filter: saturate(2) brightness(1.5); }
 
-@keyframes fullPageBeat { 
-  0% { transform: scale(1); } 
-  100% { transform: scale(1.03); } 
-}
-@keyframes heavyBass { 
-  0% { transform: scale(1); } 
-  100% { transform: scale(1.05); } 
+body.overdrive-active .concert-lights { 
+  filter: saturate(2) brightness(1.5); 
 }
 
 /* Active Audio Visualizer (EQ) */
