@@ -20,12 +20,9 @@ This is a **personal, non-commercial fan project** made purely for fun and exper
 - 🎚️ Functional audio equalizer
 - 💡 Concert-style moving lights
 - 🕯️ Audience lighters
-- 🎛️ Overdrive mode
-- 🎤 Performance sound effects
+- 🎤 Rupam Islam's concert speech moments
 - 👏 Clap & 📣 Cheer reactions
 - 🎉 Poppers / celebration effects
-- 🔗 Interactive share action
-- 📱 Responsive design
 
 ## 🛠️ Tech
 
