@@ -1,0 +1,70 @@
+/* Ultimate Rockstar Features CSS */
+.stage-controls {
+  display: flex; flex-direction: column; gap: 15px;
+  position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
+  z-index: 100;
+}
+.control-btn {
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff; padding: 8px 12px; border-radius: 20px;
+  cursor: pointer; font-size: 14px; font-weight: bold;
+  backdrop-filter: blur(10px); transition: all 0.2s;
+}
+.control-btn:hover { background: rgba(80, 80, 80, 0.8); }
+.control-btn.active { background: #ff4757; border-color: #ff4757; }
+
+/* Lighter Mode */
+#lighters-container {
+  position: fixed; inset: 0; pointer-events: none; z-index: 10; opacity: 0; transition: opacity 2s;
+}
+.lighter {
+  position: absolute; width: 4px; height: 4px; background: #ffeaa7; border-radius: 50%;
+  box-shadow: 0 0 10px 4px rgba(255, 234, 167, 0.8);
+  animation: sway 4s ease-in-out infinite alternate;
+}
+@keyframes sway { 0% { transform: translateX(-10px) translateY(5px); opacity: 0.6; } 100% { transform: translateX(10px) translateY(-5px); opacity: 1; } }
+
+body.lighter-mode::before { background: rgba(0,0,0,0.9); }
+body.lighter-mode .concert-lights { opacity: 0.1 !important; }
+body.lighter-mode #lighters-container { opacity: 1; }
+
+/* Encore Blackout */
+#blackout-screen {
+  position: fixed; inset: 0; background: black; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.5s;
+}
+body.encore-active #blackout-screen { opacity: 1; pointer-events: all; }
+
+/* Guitar Amp Overdrive */
+body.overdrive-active {
+  animation: fullPageBeat 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate;
+}
+body.overdrive-active .player-wrap {
+  animation: heavyBass 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate; 
+  filter: contrast(1.5) saturate(1.5);
+}
+body.overdrive-active .concert-lights { filter: saturate(2) brightness(1.5); }
+
+@keyframes fullPageBeat { 
+  0% { transform: scale(1); } 
+  100% { transform: scale(1.03); } 
+}
+@keyframes heavyBass { 
+  0% { transform: scale(1); } 
+  100% { transform: scale(1.05); } 
+}
+
+/* Active Audio Visualizer (EQ) */
+#eq-visualizer {
+  display: flex; gap: 4px; align-items: flex-end; justify-content: center;
+  height: 40px; margin-bottom: 5px; opacity: 0; transition: opacity 0.3s;
+  position: relative; z-index: 20;
+}
+#eq-visualizer.is-playing { opacity: 1; }
+.eq-bar {
+  width: 6px; background: #00d2d3; border-radius: 3px 3px 0 0;
+  box-shadow: 0 0 10px #00d2d3; height: 5px;
+}
+#eq-visualizer.is-playing .eq-bar { animation: eqBounce 0.5s ease-in-out infinite alternate; }
+@keyframes eqBounce { 0% { height: 5px; } 100% { height: 40px; } }
+

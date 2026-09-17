@@ -1,0 +1,57 @@
+/* Concert Lights */
+.concert-lights {
+  position: fixed;
+  top: -10vh; left: 0; right: 0;
+  height: 120vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  animation: colorShift 10s linear infinite, intensityPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes colorShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+@keyframes intensityPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 0.9; }
+}
+
+.light-beam {
+  position: absolute;
+  top: -20vh;
+  width: 20vw;
+  height: 150vh;
+  transform-origin: top center;
+  clip-path: polygon(45% 0, 55% 0, 100% 100%, 0% 100%);
+}
+
+.beam-1 {
+  left: 10vw;
+  background: linear-gradient(to bottom, rgba(100, 255, 255, 0.6) 0%, transparent 80%);
+  animation: scan1 7s ease-in-out infinite alternate;
+}
+.beam-2 {
+  left: 35vw;
+  background: linear-gradient(to bottom, rgba(255, 100, 255, 0.6) 0%, transparent 80%);
+  animation: scan2 9s ease-in-out infinite alternate-reverse;
+}
+.beam-3 {
+  right: 35vw;
+  background: linear-gradient(to bottom, rgba(100, 255, 100, 0.6) 0%, transparent 80%);
+  animation: scan3 8s ease-in-out infinite alternate;
+}
+.beam-4 {
+  right: 10vw;
+  background: linear-gradient(to bottom, rgba(255, 255, 100, 0.6) 0%, transparent 80%);
+  animation: scan4 11s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes scan1 { 0% { transform: rotate(-30deg); } 100% { transform: rotate(15deg); } }
+@keyframes scan2 { 0% { transform: rotate(-15deg); } 100% { transform: rotate(35deg); } }
+@keyframes scan3 { 0% { transform: rotate(-35deg); } 100% { transform: rotate(15deg); } }
+@keyframes scan4 { 0% { transform: rotate(-15deg); } 100% { transform: rotate(30deg); } }
+

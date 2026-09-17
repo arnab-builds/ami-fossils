@@ -1,0 +1,135 @@
+:root{
+  --glass-bg: rgba(30, 30, 30, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --text-dark: #fff;
+  --text-mid: rgba(255, 255, 255, 0.7);
+  --accent: #fff;
+}
+
+*{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+html,
+body {
+  margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden;
+  min-height: 100vh;
+  background-image: url("../background.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  color: white;
+}
+
+/* Top Bar */
+.top-bar {
+  position: absolute;
+  top: 20px; left: 20px; right: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.logo-box {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.status-pill {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.status-pill .dot {
+  width: 8px; height: 8px; background: #28a745; border-radius: 50%;
+}
+
+.top-right {
+  display: flex; gap: 10px;
+}
+
+.icon-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; cursor: pointer;
+}
+
+/* Bottom Bar */
+.bottom-bar {
+  position: absolute;
+  bottom: 20px; left: 20px; right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 10;
+}
+
+.share-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  padding: 10px 20px;
+  border-radius: 24px;
+  color: white;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; cursor: pointer;
+}
+.share-btn svg { width: 16px; height: 16px; }
+
+.bottom-right {
+  display: flex; gap: 10px;
+}
+
+/* Base Body Effects */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: 
+    radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.7) 120%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.25;
+}
+
+/* Interaction Buttons */
+.action-btn {
+  background: rgba(40, 40, 40, 0.6);
+  backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 24px; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.action-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+.action-btn:active {
+  transform: scale(0.95);
+}
+

@@ -1,0 +1,78 @@
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .player-wrap {
+    width: 95%;
+    bottom: 90px; /* Give space for bottom bar */
+  }
+  
+  .player-pill {
+    padding: 15px;
+  }
+  
+  .art-wrap {
+    width: 60px;
+    height: 60px;
+    flex: 0 0 60px;
+  }
+  
+  .art-img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .vinyl {
+    width: 50px;
+    height: 50px;
+    top: 5px;
+    right: -20px;
+  }
+  
+  .track-title {
+    font-size: 16px;
+  }
+  
+  .play-btn {
+    width: 45px;
+    height: 45px;
+  }
+  .play-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .shuffle-btn {
+    width: 50px;
+    height: 50px;
+  }
+  .shuffle-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .stage-controls {
+    flex-direction: row;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .status-pill {
+    font-size: 12px;
+  }
+  .bottom-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
